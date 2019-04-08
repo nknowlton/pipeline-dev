@@ -1,0 +1,11 @@
+// currently runs qc, does not wait for confirmation on whether to continue the run, 
+// trims, and does a 2nd lot of qc to the trimmed reads. 
+// Once this is parrallelized, should be able to insert multiqc steps. 
+
+load "library.bpipe"
+
+//trim align markDups recalibrate CallHaplotypes Annotate
+
+run { 
+   "%_*.fastq.gz" * [trim] + "%_*.trim" * [align] + "%_*" * [markDuplicates] + "%_*" * [recalibrate] + "%_" * [haplotypeCalling] +   "%_" *  [annotation]
+}
