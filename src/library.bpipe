@@ -4,18 +4,16 @@
 //      i.e. you need to install annovar and then replace table_annovar.pl with the copy found with this pipeline
 
 concurrency=1000
-bwaIndex="/nesi/project/uoa00595/data/hg19/ucsc.hg19.fasta"
-picardLoc = "/scale_wlg_nobackup/pan_migration/apps/easybuild/RHEL6.3/westmere/software/picard/2.1.0/picard.jar"
+bwaIndex="/blue/reference/hg19.fa.gz"
+picardLoc = "/blue/picard/picard.jar"
 hg19db = "/nesi/project/uoa00571/data/annovar/db/"
 annovarDB = "/nesi/project/uoa00571/data/annovar/db"
+output.dir="/blue/temp"
 
 qc = {
-    output.dir="../data/fastqc"
+    output.dir="../qc"
     //exec "module load FastQC"
-    multi "fastqc -t 1 $input1 -o fastqc/",
-        "fastqc -t 1 $input2 -o fastqc/",
-        "fastqc -t 1 $input3 -o fastqc/",
-        "fastqc -t 1 $input4 -o fastqc/"
+    exec "fastqc -t 1 $input1 -o fastqc/"
 }
 
 

@@ -7,5 +7,5 @@ load "library.bpipe"
 //trim align markDups recalibrate CallHaplotypes Annotate
 
 run { 
-   "%_*.fastq.gz" * [trim] + "%_*.trim" * [align] + "%_*" * [markDuplicates] + "%_*" * [recalibrate] + "%_" * [haplotypeCalling] +   "%_" *  [annotation]
+   "%_*.fastq.gz" * [qc,trim] + "%_*.trim" * [align] + "%_*" * [markDuplicates] + "%_*" * [recalibrate] //+ "%_" * [haplotypeCalling] +   "%_" *  [annotation]
 }
